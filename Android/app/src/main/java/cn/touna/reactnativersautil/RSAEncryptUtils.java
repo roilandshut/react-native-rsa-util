@@ -30,8 +30,8 @@ public class RSAEncryptUtils {
      * @param input 加密数据
      * @throws Exception
      */
-    public static String decryptByPrivateKey(String input, String prKey) {
-        try {
+    public static String decryptByPrivateKey(String input, String prKey)  throws Exception{
+
             byte[] keyBytes = new BASE64Decoder().decodeBuffer(prKey);
 
             PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
@@ -62,10 +62,7 @@ public class RSAEncryptUtils {
             }
             out.close();
             return new String(out.toByteArray(), "UTF-8");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
     }
 
     /**
@@ -75,8 +72,8 @@ public class RSAEncryptUtils {
      * @param priKey
      * @throws Exception
      */
-    public static String encryptByPrivateKey(String input, String priKey){
-        try{
+    public static String encryptByPrivateKey(String input, String priKey) throws Exception{
+
             // 对密钥解密
             byte[] keyBytes = new BASE64Decoder().decodeBuffer(priKey);
 
@@ -113,10 +110,7 @@ public class RSAEncryptUtils {
             String encoded = encoder.encode(encryptedData);
             encoded = encoded.replaceAll("\n", "");//替换换行符
             return encoded;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
     }
 
     /**
@@ -125,8 +119,8 @@ public class RSAEncryptUtils {
      * @param input 加密数据
      * @throws Exception
      */
-    public static String encryptByPublicKey(String input, String pbKey) {
-        try {
+    public static String encryptByPublicKey(String input, String pbKey) throws Exception{
+
             byte[] keyBytes = new BASE64Decoder().decodeBuffer(pbKey);
 
             X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
@@ -160,10 +154,7 @@ public class RSAEncryptUtils {
             String encoded = encoder.encode(encryptedData);
             encoded = encoded.replaceAll("\n", "");//替换换行符
             return encoded;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
     }
 
     /**
@@ -172,8 +163,8 @@ public class RSAEncryptUtils {
      * @param input
      * @throws Exception
      */
-    public static String decryptByPublicKey(String input, String pbKey) {
-        try {
+    public static String decryptByPublicKey(String input, String pbKey) throws Exception{
+
             // 对密钥解密
             byte[] keyBytes = new BASE64Decoder().decodeBuffer(pbKey);
 
@@ -207,9 +198,6 @@ public class RSAEncryptUtils {
             }
             out.close();
             return new String(out.toByteArray());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
     }
 }
